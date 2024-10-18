@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://t3.ftcdn.net/jpg/01/18/01/94/360_F_118019445_YcBJgIXL32WiujBaA8OOHozfGy3059CT.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    padding: 20px;
+    text-align: center;
+}
+
+.main-content {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}

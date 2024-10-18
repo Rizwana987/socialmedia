@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Dance Registration Form</title>
+</head>
+<body>
+<h1>Student placement Registration</h1>
+    <form name="register" method="post" action="register.jsp" onsubmit="return validateForm()">
+
+        <label for="rno">Enter Your Roll Number:</label>
+        <input type="text" name="rno" id="rno"><br>
+        
+        <label for="name">Enter Your Name:</label>
+        <input type="text" name="name" id="name"><br>
+        
+        <label for="mail">Enter Your Email(uname):</label>
+        <input type="email" name="mail" id="mail"><br>
+        
+        <label for="password">Enter Your Password:</label>
+        <input type="password" name="password" id="password"><br>
+        
+        
+        
+        <label for="cgpa">Enter Your CGPA:</label>
+        <input type="float" name="cgpa" id="cgpa"><br>
+        
+        <label for="section">Select your class Section</label>
+        <select name="section" id="section">
+            <option value="">Select a section</option>
+            <option value="A-SEC">SEC-A</option>
+            <option value="B-SEC">SEC-B</option>
+            <option value="C-SEC">SEC-C</option>
+        </select><br>
+
+
+          <label for="languages">Select your konwn laanguages:  </label>
+       
+          <label for="telugu">Telugu</label>
+          <input type="checkbox" id="telugu" name="languages" value="Telugu">
+
+          <label for="hindi">Hindi</label>
+          <input type="checkbox" id="hindi" name="languages" value="Hindi">
+
+          <label for="english">English</label>
+          <input type="checkbox" id="english" name="languages" value="English">
+
+
+
+
+	<div class="gender-group">
+            <label>Choose Gender:</label>
+            <input type="radio" name="gender" id="male" value="male">
+            <label for="male">Male</label>
+            
+            <input type="radio" name="gender" id="female" value="female">
+            <label for="female">Female</label>
+        </div>
+	<label for="address">Enter Your Address</label>
+        <input type="text" name="address" id="address"><br>
+        
+
+        
+        <div class="btn-group">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+
+</body>
+</html>

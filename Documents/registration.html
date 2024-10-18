@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Dance Academy</title>
+    <link rel="stylesheet" href="registrationstyle.css">
+    <script>
+        function validateForm() {
+            var fullname = document.getElementById('fullname').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
+            // Check if Full Name is empty
+            if (fullname.trim() === '') {
+                alert('Please enter your Full Name.');
+                return false;
+            }
+
+            // Check if Email is empty and in a valid format
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.trim() === '' || !emailRegex.test(email)) {
+                alert('Please enter a valid Email address.');
+                return false;
+            }
+
+            // Check if Phone is empty and contains only numbers
+            var phoneRegex = /^\d+$/;
+            if (phone.trim() === '' || !phoneRegex.test(phone)) {
+                alert('Please enter a valid Phone number.');
+                return false;
+            }
+		if (dancestyle.trim() === '') {
+                alert('Please enter your Preferred Dance Style.');
+                return false;
+
+            }
+
+            return true; // If all validations pass
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Registration</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="registration-form">
+            <img src="images/profile_placeholder.jpg" alt="Profile Picture" class="profile-picture">
+
+            <form action="submit_registration.php" method="post" onsubmit="return validateForm()">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="dancestyle">Preferred Dance Style:</label>
+                <input type="text" id="dancestyle" name="dancestyle">
+
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Dance Academy. All rights reserved.</p>
+    </footer>
+</body>
+</html>

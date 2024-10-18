@@ -1,0 +1,96 @@
+1) Create a table STUDENT with appropriate data types and perform the following
+queries. Attributes are Roll number, student name, date of birth, branch and year of
+study.
+a) Insert 5 to 10 rows in a table?
+b) List all the students of all branches
+c) List student names whose name starts with ‘s‘.
+d) List student names whose name contains ‘s as third literal.
+e) List student names whose contains two ‘s‘ anywhere in the name
+f) List students whose branch is NULL.
+g) List students of CSE & ECE who born after 1980.
+h) List all students in reverse order of their names.
+i) Delete students of any branch whose name starts with ‘s‘.
+j) Update the branch of CSE students to ECE.
+k) Display student name padded with *‘after the name of all the students.
+2) Create the following tables based on the above Schema Diagram with appropriate data
+types
+and constraints and perform the following queries.
+SAILORS (Saild, Salname, Rating, Age)
+RESERVES (Sailid, boatid, Day)
+BOATS (Boatid, Boat-name, Color)
+a) Insert 5 to 10 rows in all tables?
+b) Find the name of sailors who reserved boat number 3.
+c) Find the name of sailors who reserved green boat.
+d) Find the colors of boats reserved by Ramesh.
+e) Find the names of sailors who have reserved at least one boat.
+LAKIREDDY BALI REDDY COLLEGE OF ENGINEERING (AUTONOMOUS), MYLAVARAM
+B.Tech. (Computer Science and Engineering) R20 Regulations (w.e.f. 2020-21) 59 | P a g e
+f) Find the allsailid of sailors who have a rating of 10 or have reserved boated 104.
+g) Find the Sailid‘s of sailors with age over 20 who have not registered a red boat.
+h) Find the names of sailors who have reserved a red or green boat.
+i) Find sailors whose rating is better than some sailor called Salvador.
+j) Find the names of sailors who are older than the oldest sailor with a rating of 10.
+3) Schema Diagram for the rest of the SQL and PLSQL Programs.
+Create the following tables based on the above Schema Diagram with appropriate data types and
+constraints.
+EMPLOYEE (Fname, Mname, Lname, SSN, Bdate, Address, Gender, Salary,
+SuperSSN,Dno)
+DEPARTMENT (Dnumber, Dname, MgrSSN, Mgrstartdate)
+DEPENDENT (ESSN, Dependent_Name, Gender, Bdate, Relationship)
+a) Insert 5 to 10 rows into all the tables.
+b) Display all employees’ names along with their department names.
+c) Display all employees’ names along with their dependent details.
+d) Display name and address of all employees who work for Research department.
+e) List the names of all employees with two or more dependents.
+f) List the names of employee who have no dependents.
+g) List the names of employees who have at least one dependent.
+h) List the names of the employees along with names of their supervisors using aliases.
+i) Display name of the department and name of manager for all the departments.
+j) Display the name of each employee who has a dependent with the same first name and
+gender as the employee.
+4) Create the following tables based on the above Schema Diagram with appropriate data
+typesand constraints in addition to the tables in Experiment 2.
+DEPT_LOCATIONS (Dnumber, Dloaction)
+PROJECT (Pname, Pnumber, Plocation,
+Dnum) WORKS_ON (ESSN, Pno, Hours)
+a) Insert 5 to 10 rows into all the tables.
+LAKIREDDY BALI REDDY COLLEGE OF ENGINEERING (AUTONOMOUS), MYLAVARAM
+B.Tech. (Computer Science and Engineering) R20 Regulations (w.e.f. 2020-21) 60 | P a g e
+b) Find the names of the employees who work on all the projects controlled by the
+department Research.
+c) List the project number, name and no. Of employees who work on that project for all
+the projects.
+d) List the names of all the projects controlled by the departments department wise.
+e) Retrieve the names of employees who work on all projects that John works on.
+f) List the project numbers for projects that involve an employee either as worker or as
+a manager of the department that controls the project.
+g) List the names of all employees in one department who work more than 10 hours on
+one specific project.
+h) For each project, list the project name and total hours (by all employees) spent on
+that project.
+i) Retrieve the names of all employees who work on every project.
+j) Retrieve the names of all employees who do not work on any project.
+5) Create a view that has project name, controlling department name, number of employees
+andtotal hours worked on the project for each project with more than one employee
+working on it.
+a) List the projects that are controlled by one department from this view.
+b) List the managers of the controlling departments for all the projects.
+c) Demonstrate one update operation on this view.
+d) List the Location of the controlling departments for all the projects.
+e) Retrieve the data from the view.
+6) Create a view emp from employee such that it contains only emp_noemp_name and
+department.
+7) Create a view dept from department with only dept_no and location.
+ 8) Create a view that contains the details of employees who are managers only.
+ 9) Write a procedure to check whether the given number is Armstrong or not.
+10) Write a procedure which accept the account number of a customer and retrieve the
+ balance.
+11) Write a procedure which accepts the student number and displays the department in
+ which he belongs to.
+12) Create a cursor to modify the salary of all employees belonging to 'Research'
+ department by 150%.
+13) Consider the college database. Retrieve all students who have registered for a specific
+ course and store their details into another table using Cursors.
+14) Write an update trigger on Account table. The system should keep track of the records
+ that are being updated.
+15) Create NoSQL database for a sample application and perform CURD operations 

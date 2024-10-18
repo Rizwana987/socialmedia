@@ -1,0 +1,1136 @@
+1a)
+
+class Student {
+    private int id;
+    private String name;
+    private int age;
+    private String grade;
+
+    // Parameterized constructor
+    public Student(int id, String name, int age, String grade) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+    }
+
+    // Display method to print all attributes
+    public void display() {
+        System.out.println("Student ID: " + id);
+        System.out.println("Student Name: " + name);
+        System.out.println("Student Age: " + age);
+        System.out.println("Student Grade: " + grade);
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of the Student class
+        Student student1 = new Student(1, "John Doe", 20, "A");
+        Student student2 = new Student(2, "Jane Smith", 22, "B");
+        Student student3 = new Student(3, "Bob Johnson", 21, "C");
+
+        // Displaying details of three students using the display method
+        System.out.println("Details of Student 1:");
+        student1.display();
+
+        System.out.println("Details of Student 2:");
+        student2.display();
+
+        System.out.println("Details of Student 3:");
+        student3.display();
+    }
+}
+
+-----------------------------------------------------------------------------------
+2 a)
+
+
+class Account {
+    private int accountNumber;
+    private String accountHolderName;
+    private double balance;
+    private static double interestRate; // static variable representing annual interest rate
+
+    // Parameterized constructor
+    public Account(int accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    // Static method to set the interest rate for all accounts
+    public static void setInterestRate(double rate) {
+        interestRate = rate;
+    }
+
+    // Non-static display method to print all attributes
+    public void display() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder Name: " + accountHolderName);
+        System.out.println("Balance: $" + balance);
+        System.out.println("Annual Interest Rate: " + interestRate + "%");
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of the Account class
+        Account account1 = new Account(101, "John Doe", 1000.0);
+        Account account2 = new Account(102, "Jane Smith", 1500.0);
+        Account account3 = new Account(103, "Bob Johnson", 2000.0);
+
+        // Set the annual interest rate for all accounts
+        Account.setInterestRate(5.0); // 5% annual interest rate for all accounts
+
+        // Displaying details of 3 accounts using the display method
+        System.out.println("Details of Account 1:");
+        account1.display();
+
+        System.out.println("Details of Account 2:");
+        account2.display();
+
+        System.out.println("Details of Account 3:");
+        account3.display();
+    }
+}
+----------------------------------------------------------------------------------------
+2b)
+
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        // Code to be executed by the thread
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " - Count: " + i);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+public class ThreadLifecycleDemo {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        myThread.start(); // Runnable
+
+        try {
+            Thread.sleep(2000); // Blocked
+            myThread.interrupt(); // Interrupted (from Blocked)
+            myThread.join(); // Waiting (waiting for myThread to finish)
+            Thread.sleep(3000); // Timed Waiting
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread completed"); // Terminated
+    }
+}
+
+------------------------------------------------------------------------------------------
+3a)
+
+class Product {
+    private int productId;
+    private String productName;
+    private double price;
+    private int quantityInStock;
+
+    // Default constructor
+    public Product() {
+        this.productId = 0;
+        this.productName = "Default Product";
+        this.price = 0.0;
+        this.quantityInStock = 0;
+    }
+
+    // Parameterized constructor with product ID, product name, and price
+    public Product(int productId, String productName, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.quantityInStock = 0; // Default quantity is set to 0
+    }
+
+    // Another parameterized constructor with all attributes
+    public Product(int productId, String productName, double price, int quantityInStock) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.quantityInStock = quantityInStock;
+    }
+
+    // Non-static display method to print all attributes
+    public void display() {
+        System.out.println("Product ID: " + productId);
+        System.out.println("Product Name: " + productName);
+        System.out.println("Price: $" + price);
+        System.out.println("Quantity in Stock: " + quantityInStock);
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of the Product class using different constructors
+        Product product1 = new Product();
+        Product product2 = new Product(101, "Laptop", 899.99);
+        Product product3 = new Product(102, "Smartphone", 499.99, 50);
+
+        // Displaying details of each product, including the ones created with different constructors
+        System.out.println("Details of Product 1:");
+        product1.display();
+
+        System.out.println("Details of Product 2:");
+        product2.display();
+
+        System.out.println("Details of Product 3:");
+        product3.display();
+    }
+}
+
+-----------------------------------------------------------------------------------------
+3b)
+ 
+
+class Customer {
+    int amount = 10000;
+
+    synchronized void withdraw(int amount) {
+        System.out.println("Going to withdraw...");
+        if (this.amount < amount) {
+            System.out.println("Less balance; waiting for deposit...");
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        this.amount -= amount;
+        System.out.println("Withdraw completed...");
+    }
+
+    synchronized void deposit(int amount) {
+        System.out.println("Going to deposit...");
+        this.amount += amount;
+        System.out.println("Deposit completed... ");
+        notify();
+    }
+}
+
+public class Test_inter {
+    public static void main(String args[]) {
+        Customer c = new Customer();
+
+        Thread T1 = new Thread() {
+            public void run() {
+                c.withdraw(15000);
+            }
+        };
+
+        Thread T2 = new Thread() {
+            public void run() {
+                c.deposit(10000);
+            }
+        };
+
+        T1.start();
+        T2.start();
+    }
+}
+
+-------------------------------------------------------------------------------------------
+4a)
+
+// Shape class
+class Shape {
+    protected double area;
+
+    // Default constructor
+    public Shape() {
+        this.area = 0;
+    }
+
+    // Method to get the area of the shape
+    public double getArea() {
+        return area;
+    }
+
+    // Method to display generic shape information
+    public void displayShapeInfo() {
+        System.out.println("This is a generic shape.");
+    }
+}
+
+// Rectangle class (extends Shape)
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    // Parameterized constructor for Rectangle
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Override getArea() method for Rectangle
+    @Override
+    public double getArea() {
+        area = length * width;
+        return area;
+    }
+
+    // Method to display rectangle information
+    public void displayRectangleInfo() {
+        System.out.println("Rectangle Dimensions - Length: " + length + ", Width: " + width);
+    }
+}
+
+// Circle class (extends Shape)
+class Circle extends Shape {
+    private double radius;
+
+    // Parameterized constructor for Circle
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Override getArea() method for Circle
+    @Override
+    public double getArea() {
+        area = Math.PI * radius * radius;
+        return area;
+    }
+
+    // Method to display circle information
+    public void displayCircleInfo() {
+        System.out.println("Circle Radius: " + radius);
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Creating instances of Rectangle and Circle classes
+        Rectangle rectangle = new Rectangle(5.0, 3.0);
+        Circle circle = new Circle(2.5);
+
+        // Calling getArea() and displayShapeInfo() on Rectangle
+        System.out.println("Rectangle Area: " + rectangle.getArea());
+        rectangle.displayShapeInfo();
+        rectangle.displayRectangleInfo();
+        System.out.println();
+
+        // Calling getArea() and displayShapeInfo() on Circle
+        System.out.println("Circle Area: " + circle.getArea());
+        circle.displayShapeInfo();
+        circle.displayCircleInfo();
+    }
+}
+
+-------------------------------------------------------------------------------------------
+
+4b)
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+
+public class BorderLayoutExample extends Frame {
+    public BorderLayoutExample() {
+        setTitle("BorderLayout Example");
+
+        // Create components
+        Button btnNorth = new Button("North");
+        Button btnSouth = new Button("South");
+        Button btnEast = new Button("East");
+        Button btnWest = new Button("West");
+        Button btnCenter = new Button("Center");
+
+        Label lblStatus = new Label("Status:");
+        TextField txtStatus = new TextField();
+
+        // Create panels for organizing components
+        Panel panelNorth = new Panel();
+        panelNorth.add(btnNorth);
+
+        Panel panelSouth = new Panel();
+        panelSouth.add(btnSouth);
+
+        Panel panelEast = new Panel();
+        panelEast.add(btnEast);
+
+        Panel panelWest = new Panel();
+        panelWest.add(btnWest);
+
+        Panel panelCenter = new Panel();
+        panelCenter.add(btnCenter);
+
+        // Set BorderLayout for the frame
+        setLayout(new BorderLayout());
+
+        // Add components to the frame using BorderLayout
+        add(panelNorth, BorderLayout.NORTH);
+        add(panelSouth, BorderLayout.SOUTH);
+        add(panelEast, BorderLayout.EAST);
+        add(panelWest, BorderLayout.WEST);
+        add(panelCenter, BorderLayout.CENTER);
+
+        // Add status components to the South
+        add(lblStatus, BorderLayout.SOUTH);
+        add(txtStatus, BorderLayout.SOUTH);
+
+        // Set frame properties
+        setSize(400, 300);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new BorderLayoutExample();
+    }
+}
+
+
+
+-------------------------------------------------------------------------------------------
+5a)
+
+class Calculator {
+    private double result;
+
+    // Addition methods
+    public void performOperation(int num1, int num2,int num3,int num4,int num5) {
+        result = num1 + num2 + num3 + num4 + num5;
+    }
+
+    public void performOperation(double num1, double num2, double num3, double num4, double num5) {
+        result = num1 + num2 + num3 + num4 + num5;
+    }
+
+    // Subtraction methods
+    public void performOperation(int num1, int num2, int num3) {
+        result = num1 - num2 - num3;
+    }
+
+    public void performOperation(double num1, double num2, double num3) {
+        result = num1 - num2 - num3;
+    }
+
+    // Multiplication methods
+    public void performOperation(int num1, int num2, int num3, int num4) {
+        result = num1 * num2 * num3 * num4;
+    }
+
+    public void performOperation(double num1, double num2, double num3, double num4) {
+        result = num1 * num2 * num3 * num4;
+    }
+
+    // Division methods
+    public void performOperation(int num1, int num2) {
+        if (num2 != 0) {
+            result = (double) num1 / num2;
+        } else {
+            System.out.println("Cannot divide by zero.");
+        }
+    }
+
+    public void performOperation(double num1, double num2) {
+        if (num2 != 0.0) {
+            result = num1 / num2;
+        } else {
+            System.out.println("Cannot divide by zero.");
+        }
+    }
+
+    // Display result method
+    public void displayResult() {
+        System.out.println("Result: " + result);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        // Create an instance of the Calculator class
+        Calculator calculator = new Calculator();
+
+        // Perform operations with various parameter types
+        calculator.performOperation(5, 3, 2, 2, 2);
+        calculator.displayResult();
+
+        calculator.performOperation(10.5, 2.5, 2.2, 3.2, 2.1);
+        calculator.displayResult();
+
+        calculator.performOperation(20, 5, 3);
+        calculator.displayResult();
+
+        calculator.performOperation(15.0, 3.0, 2.0);
+        calculator.displayResult();
+
+        calculator.performOperation(2, 3, 4, 5);
+        calculator.displayResult();
+
+        calculator.performOperation(1.5, 2.0, 3.5, 4.0);
+        calculator.displayResult();
+
+        // Division by zero example
+        calculator.performOperation(8, 9);
+    }
+}
+
+
+-------------------------------------------------------------------------------------------
+5b)
+
+
+class Table {
+    synchronized static void printTable(int n) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n * i);
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(" ");
+    }
+}
+
+class MyThread10 extends Thread {
+    public void run() {
+        Table.printTable(1);
+    }
+}
+
+class MyThread21 extends Thread {
+    public void run() {
+        Table.printTable(10);
+    }
+}
+
+public class StaticSynchronization {
+    public static void main(String t[]) {
+        MyThread10 t1 = new MyThread10();
+        MyThread21 t2 = new MyThread21();
+        t1.start();
+        t2.start();
+    }
+}
+
+
+
+
+------------------------------------------------------------------------------------------
+
+6a)
+
+// MyCalc.java
+package com.brce;
+
+public class MyCalc {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+}
+
+
+
+// MainApp.java
+public class MainApp {
+    public static void main(String[] args) {
+        // Create instances of MyCalc class
+        com.brce.MyCalc myCalc = new com.brce.MyCalc();
+
+        // Call methods to perform mathematical operations
+        int sumResult = myCalc.add(10, 5);
+        int subtractResult = myCalc.subtract(10, 5);
+
+        // Display the results
+        System.out.println("Sum Result: " + sumResult);
+        System.out.println("Subtract Result: " + subtractResult);
+    }
+}
+
+----------------------------------------------------------------------------------------
+6b)
+
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Thread using Thread class: " + i);
+        }
+    }
+}
+
+public class ThreadExample1 {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        myThread.start();
+        
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Main thread: " + i);
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////
+class MyRunnable implements Runnable {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Thread using Runnable interface: " + i);
+        }
+    }
+}
+
+public class ThreadExample2 {
+    public static void main(String[] args) {
+        Thread myThread = new Thread(new MyRunnable());
+        myThread.start();
+        
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Main thread: " + i);
+        }
+    }
+}
+
+
+
+
+
+-------------------------------------------------------------------------------------
+7a)
+
+// Animal.java
+abstract class Animal {
+    // Abstract method
+    public abstract void makeSound();
+
+    // Non-abstract method
+    public void displayInfo() {
+        System.out.println("I am a generic animal.");
+    }
+}
+
+// Dog.java
+class Dog extends Animal {
+    // Implementing the abstract method from the parent class
+    @Override
+    public void makeSound() {
+        System.out.println("Dog barks: Woof! Woof!");
+    }
+
+    // Additional method for Dog
+    public void wagTail() {
+        System.out.println("Dog is wagging its tail.");
+    }
+}
+
+// Cat.java
+class Cat extends Animal {
+    // Implementing the abstract method from the parent class
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows: Meow! Meow!");
+    }
+
+    // Additional method for Cat
+    public void purr() {
+        System.out.println("Cat is purring.");
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Create instances of Dog and Cat classes
+        Dog myDog = new Dog();
+        Cat myCat = new Cat();
+
+        // Call makeSound() and display additional information
+        myDog.makeSound();
+        myDog.displayInfo();
+        myDog.wagTail();
+
+        System.out.println(); // Adding a blank line for better readability
+
+        myCat.makeSound();
+        myCat.displayInfo();
+        myCat.purr();
+    }
+}
+
+
+-------------------------------------------------------------------------------------------
+7b)
+
+import java.awt.Frame;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+public class WindowListenerExample extends Frame implements WindowListener {
+
+    public WindowListenerExample() {
+        // Set frame properties
+        setTitle("WindowListener Example");
+        setSize(300, 200);
+
+        // Add WindowListener to handle window events
+        addWindowListener(this);
+
+        // Make the frame visible
+        setVisible(true);
+    }
+
+    // Implementing WindowListener methods
+    @Override
+    public void windowOpened(WindowEvent e) {
+        System.out.println("Window opened");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        System.out.println("Window closing");
+        dispose(); // Close the window
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        System.out.println("Window closed");
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        System.out.println("Window iconified (minimized)");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        System.out.println("Window deiconified (restored)");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        System.out.println("Window activated");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        System.out.println("Window deactivated");
+    }
+
+    public static void main(String[] args) {
+        new WindowListenerExample();
+    }
+}
+
+
+-------------------------------------------------------------------------------------------
+
+8a)
+
+
+
+public interface Shape {
+    double calculateArea();
+
+    default void displayInfo() {
+        System.out.println("This is a shape.");
+    }
+}
+
+public class Circle implements Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("This is a circle.");
+    }
+}
+
+public class Rectangle implements Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("This is a rectangle.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circle myCircle = new Circle(5.0);
+        Rectangle myRectangle = new Rectangle(4.0, 6.0);
+
+        System.out.println("Circle Area: " + myCircle.calculateArea());
+        myCircle.displayInfo();
+
+        System.out.println("Rectangle Area: " + myRectangle.calculateArea());
+        myRectangle.displayInfo();
+    }
+}
+
+------------------------------------------------------------------------------------------
+8b)
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class KeyListenerExample extends Frame implements KeyListener {
+    private TextField textField;
+
+    public KeyListenerExample() {
+        // Setting frame properties
+        setTitle("KeyListener Example");
+        setSize(300, 200);
+
+        // Creating a TextField
+        textField = new TextField();
+        textField.addKeyListener(this);
+
+        // Adding TextField to the frame
+        add(textField);
+
+        // Handling window close event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        setVisible(true);
+    }
+
+    // Implementing methods of KeyListener Interface
+    public void keyPressed(KeyEvent e) {
+        System.out.println("Key Pressed: " + e.getKeyChar());
+    }
+
+    public void keyReleased(KeyEvent e) {
+        System.out.println("Key Released: " + e.getKeyChar());
+    }
+
+    public void keyTyped(KeyEvent e) {
+        textField.setText(textField.getText() + e.getKeyChar());
+    }
+
+    public static void main(String[] args) {
+        new KeyListenerExample();
+    }
+}
+
+------------------------------------------------------------------------------------------
+9a)
+
+class MathOperations {
+    // Method to demonstrate ArithmeticException
+    public static void divideNumbers(int numerator, int denominator) {
+        try {
+            int result = numerator / denominator;
+            System.out.println("Result of division: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    // Method to demonstrate ArrayIndexOutOfBoundsException
+    public static void accessArrayElement(int[] numbers, int index) {
+        try {
+            int value = numbers[index];
+            System.out.println("Value at index " + index + ": " + value);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Demonstrate ArithmeticException
+        MathOperations.divideNumbers(10, 2);  // Valid division
+        MathOperations.divideNumbers(5, 0);   // Division by zero
+
+        // Demonstrate ArrayIndexOutOfBoundsException
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        MathOperations.accessArrayElement(numbers, 2);  // Valid index
+        MathOperations.accessArrayElement(numbers, 10); // Invalid index
+    }
+}
+
+-------------------------------------------------------------------------------------------
+9b)
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CollectionExample {
+    public static void main(String[] args) {
+        // List Example
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Java");
+        stringList.add("Python");
+        stringList.add("C++");
+        stringList.add("JavaScript");
+
+        // Displaying elements of the list using enhanced for loop
+        System.out.println("List Elements:");
+        stringList.forEach(System.out::println);
+
+        // Map Example
+        Map<Integer, String> studentMap = new HashMap<>();
+        studentMap.put(101, "Alice");
+        studentMap.put(102, "Bob");
+        studentMap.put(103, "Charlie");
+        studentMap.put(104, "David");
+
+        // Displaying elements of the map using lambda expression
+        System.out.println("\nMap Elements:");
+        studentMap.forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
+    }
+}
+
+
+-------------------------------------------------------------------------------------------
+
+10a)
+
+import java.util.Scanner;
+
+// Custom exception class
+class AgeVerificationException extends Exception {
+    public AgeVerificationException(String message) {
+        super(message);
+    }
+}
+
+// AgeVerifier class
+class AgeVerifier {
+    // Method to verify age
+    public void verifyAge(int age) throws AgeVerificationException {
+        // Checking if age is below the threshold (e.g., 18 years)
+        if (age < 18) {
+            throw new AgeVerificationException("Access denied: You must be 18 years or older.");
+        } else {
+            System.out.println("Access granted. You are eligible to use the features.");
+        }
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of AgeVerifier
+        AgeVerifier ageVerifier = new AgeVerifier();
+
+        // Using Scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Prompting the user to enter their age
+            System.out.print("Enter your age: ");
+            int userAge = scanner.nextInt();
+
+            // Calling verifyAge method and handling AgeVerificationException if thrown
+            ageVerifier.verifyAge(userAge);
+
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid integer for age.");
+        } catch (AgeVerificationException e) {
+            System.out.println("Age Verification Error: " + e.getMessage());
+        } finally {
+            // Closing the Scanner
+            scanner.close();
+        }
+    }
+}
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+10b)
+
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class GridLayoutExample extends Frame {
+
+    public GridLayoutExample() {
+        // Set layout manager to GridLayout with 3 rows and 2 columns
+        setLayout(new GridLayout(3, 2));
+
+        // Create components
+        Label nameLabel = new Label("Name:");
+        TextField nameTextField = new TextField();
+        Label ageLabel = new Label("Age:");
+        TextField ageTextField = new TextField();
+        Button submitButton = new Button("Submit");
+        Button clearButton = new Button("Clear");
+
+        // Add components to the frame
+        add(nameLabel);
+        add(nameTextField);
+        add(ageLabel);
+        add(ageTextField);
+        add(submitButton);
+        add(clearButton);
+
+        // Set frame properties
+        setTitle("GridLayout Example");
+        setSize(300, 150);
+        setVisible(true);
+
+        // Handling window close event
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent) {
+                System.exit(0);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new GridLayoutExample();
+    }
+}
+-------------------------------------------------------------------------------------
+1b)
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Calculator extends Frame implements ActionListener {
+
+    private TextField textField;
+    private String operator;
+    private double firstOperand;
+
+    public Calculator() {
+        // Set layout manager to BorderLayout
+        setLayout(new BorderLayout());
+
+        // TextField to display input and result
+        textField = new TextField();
+        add(textField, BorderLayout.NORTH);
+
+        // Panel for buttons
+        Panel buttonPanel = new Panel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        // Buttons for digits and operations
+        String[] buttonLabels = {"7", "8", "9", "/",
+                                 "4", "5", "6", "*",
+                                 "1", "2", "3", "-",
+                                 "0", ".", "=", "+"};
+
+        for (String label : buttonLabels) {
+            Button button = new Button(label);
+            button.addActionListener(this);
+            buttonPanel.add(button);
+        }
+
+        add(buttonPanel, BorderLayout.CENTER);
+
+        // Set frame properties
+        setTitle("Calculator");
+        setSize(300, 400);
+        setVisible(true);
+
+        // Handling window close event
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                System.exit(0);
+            }
+        });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+        if (Character.isDigit(command.charAt(0)) || command.equals(".")) {
+            textField.setText(textField.getText() + command);
+        } else if (command.equals("=")) {
+            calculateResult();
+        } else {
+            operator = command;
+            firstOperand = Double.parseDouble(textField.getText());
+            textField.setText("");
+        }
+    }
+
+    private void calculateResult() {
+        double secondOperand = Double.parseDouble(textField.getText());
+        double result = 0;
+
+        switch (operator) {
+            case "+":
+                result = firstOperand + secondOperand;
+                break;
+            case "-":
+                result = firstOperand - secondOperand;
+                break;
+            case "*":
+                result = firstOperand * secondOperand;
+                break;
+            case "/":
+                if (secondOperand != 0) {
+                    result = firstOperand / secondOperand;
+                } else {
+                    textField.setText("Error");
+                    return;
+                }
+                break;
+        }
+
+        textField.setText(String.valueOf(result));
+    }
+
+    public static void main(String[] args) {
+        new Calculator();
+    }
+}
+
+

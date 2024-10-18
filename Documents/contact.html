@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Dance Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact_style.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="contact-info">
+            <h2>Our Location</h2>
+            <p>Rizz Dance Academy</p>
+            <p>123 Dance Street</p>
+            <p>1st avenue, Banglore</p>
+            <img src="https://powerliftdoors.cachecloud.com/wp-content/uploads/2020/12/dance-01.jpg" alt="Dance Academy" class="dance-academy-picture" style="width: 50%;">
+        </div>
+
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="submit_contact.php" method="post" onsubmit="return validateForm()">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Dance Academy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            // Check if Name is empty
+            if (name.trim() === '') {
+                alert('Please enter your Name.');
+                return false;
+            }
+
+            // Check if Email is empty and in a valid format
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.trim() === '' || !emailRegex.test(email)) {
+                alert('Please enter a valid Email address.');
+                return false;
+            }
+
+            // Check if Message is empty
+            if (message.trim() === '') {
+                alert('Please enter your Message.');
+                return false;
+            }
+
+            return true; // If all validations pass
+        }
+    </script>
+</body>
+</html>
